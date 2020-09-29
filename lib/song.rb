@@ -1,7 +1,10 @@
 require 'pry'
 
 class Song
+# <<<<<<< HEAD
   extend Concerns::Findable
+# =======
+# >>>>>>> 0a597d5898ffd979df7f7735bd5366f411c723f4
 
   attr_accessor :name, :artist, :genre
   @@all = []
@@ -10,6 +13,10 @@ class Song
     @name = name
     self.artist=artist if artist
     self.genre=genre if genre
+# <<<<<<< HEAD
+# =======
+    save
+# >>>>>>> 0a597d5898ffd979df7f7735bd5366f411c723f4
   end
 
   def genre=(genre)
@@ -30,6 +37,7 @@ class Song
      @@all.detect {|song| song.name == name }
    end
 
+# <<<<<<< HEAD
   def self.create(name)
     # binding.pry
     song = self.new(name)
@@ -41,6 +49,17 @@ class Song
   # def self.find_or_create_by_name(name)
   #   self.find_by_name(name) || self.create(name)
   # end
+# =======
+  def self.create(song)
+    song = self.new(song)
+    song.save
+    song
+  end
+
+  def self.find_or_create_by_name(name)
+    self.find_by_name(name) || self.create(name)
+  end
+# >>>>>>> 0a597d5898ffd979df7f7735bd5366f411c723f4
 
   def self.find_or_create_by_name(name)
     self.find_by_name(name) || self.create(name)
